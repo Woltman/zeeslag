@@ -6,19 +6,25 @@
 </head>
 
 <body>
+    <div id="menu">
     <button id="newgame-ai">new game AI</button>
     <button id="newgame">new game multiplayer</button>
     <div id="naam"></div>
     <div id="id"></div>
     <ul id="gamelist"></ul>
-    
-    
+    </div>
+    <div id="game">
+        <h2 class="enemy-name"></h2>
+        <table class="enemy-board"></table>
+    </div>
     
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     
     <script src="/app.js"></script>
     <script src="/apiService.js"></script>
+    <script src="/menucontroller.js"></script>
+    <script src="/gamecontroller.js"></script>
     
 </body>
 

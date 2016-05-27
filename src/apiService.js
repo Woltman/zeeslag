@@ -46,11 +46,20 @@
     
     ApiService.prototype.getUser = function (error, succes) {
         return $.ajax({
-        url: "https://zeeslagavans.herokuapp.com/users/me/info",
-        data: { token: this.token },
-        success: succes,
-        error: error
-    });
+            url: "https://zeeslagavans.herokuapp.com/users/me/info",
+            data: { token: this.token },
+            success: succes,
+            error: error
+        });
+    }
+    
+    ApiService.prototype.getGame = function (id, error, succes) {
+        return $.ajax({
+            url: "https://zeeslagavans.herokuapp.com/games/"+id,
+            data: { token: this.token },
+            success: succes,
+            error: error
+        });
     }
         
 })(window.zeeslag = window.zeeslag || {});
