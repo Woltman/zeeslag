@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts": {    
+    "dev": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ThomWoltman/zeeslag/issues"
   },
-  "homepage": "https://github.com/ThomWoltman/zeeslag#readme"
+  "homepage": "https://github.com/ThomWoltman/zeeslag#readme",
+  "devDependencies": {
+    "lite-server": "^2.2.0"
+  }
 }
