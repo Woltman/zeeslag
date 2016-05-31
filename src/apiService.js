@@ -1,4 +1,4 @@
-(function(zeeslag) {
+ (function(zeeslag) {
     function ApiService(token){
         this.token = token;
     }
@@ -7,7 +7,8 @@
     ApiService.prototype.printtoken = function(){
         console.log(this.token);    
     }
-     
+
+     //gives collection of games from the user
     ApiService.prototype.getGames = function(error, success){
         return $.ajax({
             url: "https://zeeslagavans.herokuapp.com/users/me/games",
@@ -16,6 +17,16 @@
             error: error
         });   
     }
+
+     // gives info from user
+     ApiService.prototype.getUserInfo = function(error, success){
+         return $.ajax({
+             url: "https://zeeslagavans.herokuapp.com/users/me/info",
+             data: { token: this.token },
+             success: success,
+             error: error
+         });
+     }
     
     ApiService.prototype.newGameAI = function (error, success) {
         return $.ajax({
@@ -24,6 +35,8 @@
             success: success,
             error: error
         });
+
+
     }
     
     ApiService.prototype.newGame = function (error, success) {
@@ -61,6 +74,29 @@
             error: error
         });
     }
+
+    //get ships from apponent
+     ApiService.prototype.getShips = function (error, succes) {
+         return $.ajax({
+             url: "https://zeeslagavans.herokuapp.com/ships",
+             data: { token: this.token },
+             success: succes,
+             error: error
+         });
+     }
+
+     // sends ship to apponeng
+     ApiService.prototype.sendShips = function (id,error, succes) {
+         return $.ajax({
+             url: "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards",
+             data: { token: this.token },
+             success: succes,
+             error: error
+         });
+     }
+
+
+
         
 })(window.zeeslag = window.zeeslag || {});
 

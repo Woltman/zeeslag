@@ -4,12 +4,13 @@
         apiService.printtoken();
         apiService.getGames(undefined, showGames);
         apiService.getUser(undefined, showProfile);
-        
         $('#newgame-ai').on("click", function() {
             
             apiService.newGameAI(undefined, function(){
                 apiService.getGames(undefined, showGames);
             });
+
+
         });
         $('#newgame').on("click", function() {
             
@@ -34,14 +35,21 @@
             }
         }
 
+
+
         function addGameToList(game) {
             var item = $("<li></li>");
             item.on("click", function() {
                 gamecontroller.showGame(game._id);
+
+
             })
             item.text(game.enemyName + ", " + game.status);
             $("#gamelist").append(item);
         }
+
+
+
     }
     zeeslag.MenuController = MenuController;
 
