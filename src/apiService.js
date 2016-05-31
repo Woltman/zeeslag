@@ -66,11 +66,21 @@
         });
     }
     
-    ApiService.prototype.getGame = function (id, error, succes) {
+    ApiService.prototype.getGame = function (id, error, success) {
         return $.ajax({
             url: "https://zeeslagavans.herokuapp.com/games/"+id,
             data: { token: this.token },
-            success: succes,
+            success: success,
+            error: error
+        });
+    }
+    
+    //delete all games
+    ApiService.prototype.deleteGames = function (error, success) {
+        return $.ajax({
+            url: "https://zeeslagavans.herokuapp.com/users/me/games?token="+this.token,
+            type: "DELETE",
+            success: success,
             error: error
         });
     }

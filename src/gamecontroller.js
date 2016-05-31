@@ -41,9 +41,7 @@
                 rowItem.append($("<td><button>"+row+", "+column+"</button></td>"));
             }
             $(".enemy-board").append(rowItem);
-        }
-        
-        
+        }       
     }
 
     function addShipToList(ship) {

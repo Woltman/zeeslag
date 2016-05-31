@@ -20,6 +20,13 @@
                 apiService.getGames(undefined, showGames);
             });
         });
+        
+        $('.delete-games').on("click", function() {
+            
+            apiService.deleteGames(undefined, function(){
+                apiService.getGames(undefined, showGames);
+            });
+        });
 
         function showProfile(data) {
             console.log(data);
