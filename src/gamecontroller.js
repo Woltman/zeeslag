@@ -1,6 +1,7 @@
 (function(zeeslag) {
     function GameController(apiService){
         this.apiService = apiService;
+
     }
     zeeslag.GameController = GameController;
     
@@ -10,7 +11,10 @@
     
     GameController.prototype.setGame = function(game){
         this.game = game;
+
         this.renderGame();
+        this.apiService.getShips(undefined, showShips);
+
     }
     
     //shows game
@@ -28,7 +32,9 @@
     }
     
     GameController.prototype.showEnemyBoard = function(){
-        
+        $(".enemy-board").empty();
+
+
         for(var row=0;row<10;row++){
             var rowItem = $("<tr></tr>");
             for(var column=0;column<10;column++){
@@ -38,6 +44,21 @@
         }
         
         
+    }
+
+    function addShipToList(ship) {
+        var item = $("<li></li>");
+
+        item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
+        $("#ships").append(item);
+    }
+
+    function showShips(data) {
+        $("#ships").empty();
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            addShipToList(data[i]);
+        }
     }
 
 })(window.zeeslag = window.zeeslag || {});
