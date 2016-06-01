@@ -1,4 +1,6 @@
 (function(zeeslag) {
+
+    var ships = [];
     function GameController(apiService){
         this.apiService = apiService;
 
@@ -44,19 +46,39 @@
         }       
     }
 
+
+    function addGameToList(game) {
+        var item = $("<li></li>");
+        item.on("click", function() {
+            gamecontroller.showGame(game._id);
+
+
+        })
+        item.text(game.enemyName + ", " + game.status);
+        $("#gamelist").append(item);
+    }
+
+
     function addShipToList(ship) {
         var item = $("<li></li>");
+        item.on("click", function() {
+            ship.rotate();
+            item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
+        })
 
-        item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
+        item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
         $("#ships").append(item);
     }
 
     function showShips(data) {
-        $("#ships").empty();
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-            addShipToList(data[i]);
-        }
+
+            $("#ships").empty();
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                var ship = new Ship(data[i]);
+                ships.push(ship);
+                addShipToList(ship);
+            }
     }
 
 })(window.zeeslag = window.zeeslag || {});

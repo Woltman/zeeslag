@@ -87,22 +87,26 @@
 
     //get ships from apponent
      ApiService.prototype.getShips = function (error, succes) {
-         return $.ajax({
+         return  $.ajax({
              url: "https://zeeslagavans.herokuapp.com/ships",
              data: { token: this.token },
              success: succes,
              error: error
          });
+
+
      }
 
      // sends ship to apponeng
      ApiService.prototype.sendShips = function (id,error, succes) {
+
          return $.ajax({
              url: "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards",
              data: { token: this.token },
              success: succes,
              error: error
          });
+
      }
 
 
