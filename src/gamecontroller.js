@@ -60,14 +60,18 @@
 
 
     function addShipToList(ship) {
-        var item = $("<li></li>");
+        var item = $("<li ></li>");
         item.on("click", function() {
-            ship.rotate();
-            item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
-        })
+            //rotates ship
+           //rotateShip(ship,item);
+
+
+
+        });
 
         item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
         $("#ships").append(item);
+        item.draggable();
     }
 
     function showShips(data) {
@@ -79,6 +83,11 @@
                 ships.push(ship);
                 addShipToList(ship);
             }
+    }
+
+    function rotateShip(ship,item){
+        ship.rotate();
+        item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
     }
 
 })(window.zeeslag = window.zeeslag || {});
