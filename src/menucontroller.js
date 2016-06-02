@@ -38,7 +38,7 @@
         
         item.on("click", function() {
             this.gamecontroller.showGame(game._id);
-        }).bind(this);
+        }.bind(this));
         
         item.text(game.enemyName + ", " + game.status);
         $("#gamelist").append(item);
