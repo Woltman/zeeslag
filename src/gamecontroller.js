@@ -38,17 +38,26 @@
 
 
         for(var row=0;row<10;row++){
-            var rowItem = $("<tr></tr>");
+            var rowItem = $("<tr class='tile'></tr>");
             for(var column=0;column<10;column++){
-                rowItem.append($("<td><button>"+row+", "+column+"</button></td>"));
+                rowItem.append($("<td>"+row+", "+column+"</td>"));
+
             }
             $(".enemy-board").append(rowItem);
-        }       
+        }
+
+        $("tr").droppable({
+            drop: function(event, ui) {
+                console.log("gedropt");
+
+
+            }
+        });
     }
 
 
     function addGameToList(game) {
-        var item = $("<li></li>");
+        var item = $("<li class='tile'></li>");
         item.on("click", function() {
             gamecontroller.showGame(game._id);
 
@@ -60,7 +69,7 @@
 
 
     function addShipToList(ship) {
-        var item = $("<li ></li>");
+        var item = $("<li class='ship'></li>");
         item.on("click", function() {
             //rotates ship
            //rotateShip(ship,item);
@@ -71,7 +80,10 @@
 
         item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
         $("#ships").append(item);
-        item.draggable();
+        item.draggable({
+            helper: "clone",
+
+        });
     }
 
     function showShips(data) {

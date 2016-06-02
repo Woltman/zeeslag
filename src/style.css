@@ -1,0 +1,18 @@
+table {
+    border: solid thick #000000;
+    width: 100%;
+}
+
+th, td {
+    border: solid thick #00b3ee;
+
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
