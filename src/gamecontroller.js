@@ -46,8 +46,12 @@
             $(".enemy-board").append(rowItem);
         }
 
-        $("tr").droppable({
+        $("td").droppable({
             drop: function(event, ui) {
+                var self = this;
+                console.log(event);
+                console.log(ui);
+                $(this).next('td').css("background-color","black");
                 console.log("gedropt");
 
 
