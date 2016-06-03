@@ -1,7 +1,10 @@
 /**
  * Created by Glenn on 31-5-2016.
  */
+(function(zeeslag) {
 function Ship(ship){
+
+    zeeslag.Ship = Ship;
 
     this.ship = ship;
     this.rotate = function () {
@@ -15,3 +18,4 @@ function Ship(ship){
     }
 
 }
+})(window.zeeslag = window.zeeslag || {});
