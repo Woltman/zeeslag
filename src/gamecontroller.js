@@ -82,7 +82,8 @@
 
         });
 
-        item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
+        //item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
+        item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
         $("#ships").append(item);
         item.draggable({
             helper: "clone",
@@ -95,15 +96,17 @@
             $("#ships").empty();
             console.log(data);
             for (var i = 0; i < data.length; i++) {
-                var ship = new Ship(data[i]);
+                var ship = $.extend(new Ship(), data[i]);
+                //var ship = new Ship(data[i]);
                 ships.push(ship);
                 addShipToList(ship);
+                console.log(ship);
             }
     }
 
     function rotateShip(ship,item){
         ship.rotate();
-        item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
+        item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
     }
 
 })(window.zeeslag = window.zeeslag || {});
