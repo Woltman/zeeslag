@@ -49,9 +49,17 @@
         $("td").droppable({
             drop: function(event, ui) {
                 var self = this;
-                console.log(event);
-                console.log(ui);
-                $(this).next('td').css("background-color","black");
+
+                console.log($(ui.draggable).data("storedInfos"));
+
+                $(this).css("background-color","black");
+                for(var c = 0 ;$(ui.draggable).data("storedInfos").ship.length -1 > c ;c++){
+                    console.log(c);
+                    $(self).next('td').css("background-color","black");
+                    self =  $(self).next('td');
+
+                }
+
                 console.log("gedropt");
 
 
@@ -84,7 +92,10 @@
 
         item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
         $("#ships").append(item);
+        console.log($(this));
+        item.data('storedInfos', ship);
         item.draggable({
+
             helper: "clone",
 
         });
