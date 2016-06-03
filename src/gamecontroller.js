@@ -53,7 +53,7 @@
                 console.log($(ui.draggable).data("storedInfos"));
 
                 $(this).css("background-color","black");
-                for(var c = 0 ;$(ui.draggable).data("storedInfos").ship.length -1 > c ;c++){
+                for(var c = 0 ;$(ui.draggable).data("storedInfos").length -1 > c ;c++){
                     console.log(c);
                     $(self).next('td').css("background-color","black");
                     self =  $(self).next('td');
@@ -107,7 +107,7 @@
             $("#ships").empty();
             console.log(data);
             for (var i = 0; i < data.length; i++) {
-                var ship = $.extend(new Ship(), data[i]);
+                var ship = $.extend(new zeeslag.Ship(), data[i]);
                 //var ship = new Ship(data[i]);
                 ships.push(ship);
                 addShipToList(ship);

@@ -5,7 +5,7 @@
 (function(zeeslag) {
 function Ship(ship){
 
-    zeeslag.Ship = Ship;
+
 
 
     this.rotate = function () {
@@ -19,4 +19,5 @@ function Ship(ship){
     }
 
 }
+    zeeslag.Ship = Ship;
 })(window.zeeslag = window.zeeslag || {});
