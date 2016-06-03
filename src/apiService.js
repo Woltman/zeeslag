@@ -10,12 +10,14 @@
 
      //gives collection of games from the user
     ApiService.prototype.getGames = function(error, success){
+
         return $.ajax({
             url: "https://zeeslagavans.herokuapp.com/users/me/games",
             data: { token: this.token },
             success: success,
             error: error
-        });   
+        });
+
     }
 
      // gives info from user
@@ -26,6 +28,7 @@
              success: success,
              error: error
          });
+
      }
     
     ApiService.prototype.newGameAI = function (error, success) {
@@ -96,18 +99,26 @@
 
 
      }
+     var x =
 
-     // sends ship to apponeng
+     // sends ship to apponend
      ApiService.prototype.sendShips = function (id,error, succes) {
 
-         return $.ajax({
-             url: "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards",
-             data: { token: this.token },
-             success: succes,
-             error: error
-         });
+         $.post( "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards", { name: "John", time: "2pm" }, function() {
+                 console.log( "success" );
+             })
+             .done(function() {
+                 console.log( "second success" );
+             })
+             .fail(function() {
+                 console.log( "error" );
+             });
+
+
 
      }
+
+
 
 
 
