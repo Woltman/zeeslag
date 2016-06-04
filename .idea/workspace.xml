@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4fd1feb-2d4b-4829-967b-486e46221883" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Tile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apiService.js" afterPath="$PROJECT_DIR$/src/apiService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamecontroller.js" afterPath="$PROJECT_DIR$/src/gamecontroller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
     </list>
     <ignored path="Zeeslag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apiService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="apiService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/apiService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6237898">
-              <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -68,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamecontroller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gamecontroller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.21161826">
+              <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -142,8 +139,8 @@
         <option value="$PROJECT_DIR$/src/Ship.js" />
         <option value="$PROJECT_DIR$/src/Tile.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
-        <option value="$PROJECT_DIR$/src/gamecontroller.js" />
         <option value="$PROJECT_DIR$/src/apiService.js" />
+        <option value="$PROJECT_DIR$/src/gamecontroller.js" />
       </list>
     </option>
   </component>
@@ -655,18 +652,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
+    <entry file="file://$PROJECT_DIR$/src/apiService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/apiService.js">
+    <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6237898">
-          <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.21161826">
+          <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
           <folding />
         </state>
       </provider>

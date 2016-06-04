@@ -1,6 +1,7 @@
 (function(zeeslag) {
 
     var ships = [];
+    var tiles = [];
     function GameController(apiService){
         this.apiService = apiService;
 
@@ -35,12 +36,19 @@
 
     GameController.prototype.showEnemyBoard = function(){
         $(".enemy-board").empty();
+        var chars =['a','b','c','d','e','f','g','h','i','j'];
 
 
         for(var row=0;row<10;row++){
             var rowItem = $("<tr class='tile'></tr>");
             for(var column=0;column<10;column++){
-                rowItem.append($("<td>"+row+", "+column+"</td>"));
+                //creates tile
+                var tile = this.makeTile(chars[row],column+1);
+                //adds tile to tile array
+                tiles.push(tile);
+
+                var item = $("<td>"+tile.x+", "+tile.y+"</td>");
+                rowItem.append(item);
 
 
             }
@@ -49,19 +57,29 @@
 
         //adds droppable function
         this.makeDroppable();
+        this.addTileTo();
 
     }
 
     //adds add object to colum
-    GameController.prototype.makeTile = function(item ,x ,y){
+    GameController.prototype.makeTile = function(x ,y){
         var tile = new zeeslag.Tile();
         tile.x = x;
         tile.y = y;
+        return tile;
+    }
 
-        item.data('tile', tile);
-        console.log(tile);
+    //adds tile to colum
+    GameController.prototype.addTileTo = function (){
+        var counter = 0
+
+        $("td").each(function(){
+            $(this).data('tile',  tiles[counter]);
+            counter++;
+        });
 
     }
+
 
 
     GameController.prototype.addGameToList = function (game) {
@@ -119,12 +137,12 @@
 
     //makes all td dropppable
     GameController.prototype.makeDroppable =function(){
+
         $("td").droppable({
             drop: function(event, ui) {
                 var self = this;
 
                 console.log($(ui.draggable).data("ship"));
-                console.log($(ui.draggable).data("tile"));
 
                 $(this).css("background-color","black");
                 for(var c = 0 ;$(ui.draggable).data("ship").length -1 > c ;c++){
@@ -133,6 +151,9 @@
                     self =  $(self).next('td');
 
                 }
+                //add x y codinates to
+                console.log($(this).data("tile"));
+                $(ui.draggable).data("ship")
 
                 console.log("gedropt");
 

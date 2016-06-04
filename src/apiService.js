@@ -97,14 +97,13 @@
              error: error
          });
 
-
      }
-     var x =
+
 
      // sends ship to apponend
      ApiService.prototype.sendShips = function (id,error, succes) {
 
-         $.post( "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards", { name: "John", time: "2pm" }, function() {
+         var x = $.post( "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards", { name: "John", time: "2pm" }, function() {
                  console.log( "success" );
              })
              .done(function() {
@@ -114,7 +113,7 @@
                  console.log( "error" );
              });
 
-
+console.log(x);
 
      }
 
