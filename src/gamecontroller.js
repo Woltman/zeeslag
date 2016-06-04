@@ -116,9 +116,7 @@
     //adds ships to Ships array
     GameController.prototype.showShips = function (data) {
 
-        console.log(self);
             $("#ships").empty();
-            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 var ship = $.extend(new zeeslag.Ship(), data[i]);
                 //var ship = new Ship(data[i]);
@@ -142,20 +140,20 @@
             drop: function(event, ui) {
                 var self = this;
 
-                console.log($(ui.draggable).data("ship"));
 
                 $(this).css("background-color","black");
                 for(var c = 0 ;$(ui.draggable).data("ship").length -1 > c ;c++){
-                    console.log(c);
                     $(self).next('td').css("background-color","black");
                     self =  $(self).next('td');
 
                 }
-                //add x y codinates to
-                console.log($(this).data("tile"));
-                $(ui.draggable).data("ship")
+                //add x y codinates to ship
+                var ship = $(ui.draggable).data("ship");
+                ship.startCell = [x =$(this).data("tile").x,y =$(this).data("tile").y];
 
                 console.log("gedropt");
+                console.log(ship);
+                console.log( JSON.stringify(ship));
 
 
             }

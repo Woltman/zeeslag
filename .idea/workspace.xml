@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4fd1feb-2d4b-4829-967b-486e46221883" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apiService.js" afterPath="$PROJECT_DIR$/src/apiService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamecontroller.js" afterPath="$PROJECT_DIR$/src/gamecontroller.js" />
     </list>
     <ignored path="Zeeslag.iws" />
@@ -68,8 +67,8 @@
       <file leaf-file-name="gamecontroller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21161826">
-              <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
+            <state vertical-scroll-proportion="3.5975103">
+              <caret line="153" column="27" selection-start-line="153" selection-start-column="24" selection-end-line="153" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -662,8 +661,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21161826">
-          <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
+        <state vertical-scroll-proportion="3.5975103">
+          <caret line="153" column="27" selection-start-line="153" selection-start-column="24" selection-end-line="153" selection-end-column="27" />
           <folding />
         </state>
       </provider>
