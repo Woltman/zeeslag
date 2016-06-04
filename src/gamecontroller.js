@@ -141,9 +141,15 @@
                 var self = this;
 
 
-                $(this).css("background-color","black");
-                for(var c = 0 ;$(ui.draggable).data("ship").length -1 > c ;c++){
-                    $(self).next('td').css("background-color","black");
+
+
+                for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+                    if($(self).data("tile").isHit == true){
+                        console.log("is hit");
+                    }
+                    $(self).css("background-color","black");
+                    $(self).data('tile').hit();
                     self =  $(self).next('td');
 
                 }
@@ -151,8 +157,7 @@
                 var ship = $(ui.draggable).data("ship");
                 ship.startCell = [x =$(this).data("tile").x,y =$(this).data("tile").y];
 
-                console.log("gedropt");
-                console.log(ship);
+
                 console.log( JSON.stringify(ship));
 
 
@@ -160,5 +165,25 @@
         });
 
     }
+    //controles if the ship is placeble
+    GameController.prototype.isPlaceble =function(ui) {
+
+        var place = true;
+        for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+            if($(self).data("tile").isHit == true){
+                console.log("is hit");
+                place = false;
+            }
+            $(self).css("background-color","black");
+            $(self).data('tile').hit();
+            self =  $(self).next('td');
+
+        }
+
+        return place;
+
+    }
+
 
 })(window.zeeslag = window.zeeslag || {});
