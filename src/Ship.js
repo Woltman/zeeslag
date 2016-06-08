@@ -3,9 +3,9 @@
  */
 
 (function(zeeslag) {
-function Ship(ship){
+function Ship(){
 
-
+    this.isVertical = Boolean(this.___v);
 
 
     this.rotate = function () {

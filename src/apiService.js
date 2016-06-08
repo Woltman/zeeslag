@@ -99,23 +99,32 @@
 
      }
 
+     ApiService.prototype.sendShips = function (error, success, id, data) {
+        return $.ajax({
+            url: "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards?token="+this.token,
+            type: "POST",
+            data: data,
+            success: success,
+            error: error
+        });
+    }
 
-     // sends ship to apponend
-     ApiService.prototype.sendShips = function (id,error, succes) {
+//      // sends ship to apponend
+//      ApiService.prototype.sendShips = function (id, error, succes) {
 
-         var x = $.post( "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards", { name: "John", time: "2pm" }, function() {
-                 console.log( "success" );
-             })
-             .done(function() {
-                 console.log( "second success" );
-             })
-             .fail(function() {
-                 console.log( "error" );
-             });
+//          var x = $.post( "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards", { name: "John", time: "2pm" }, function() {
+//                  console.log( "success" );
+//              })
+//              .done(function() {
+//                  console.log( "second success" );
+//              })
+//              .fail(function() {
+//                  console.log( "error" );
+//              });
 
-console.log(x);
+// console.log(x);
 
-     }
+//      }
 
 
 

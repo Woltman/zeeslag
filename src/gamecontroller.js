@@ -4,6 +4,8 @@
     var tiles = [];
     function GameController(apiService){
         this.apiService = apiService;
+        this.self = this;
+        this.game = null;
 
     }
     zeeslag.GameController = GameController;
@@ -14,10 +16,23 @@
 
     GameController.prototype.setGame = function(game){
         this.game = game;
-
+        
         this.renderGame();
         this.apiService.getShips(undefined, this.showShips);
 
+        $("#saveBoard").append("<button id='save'>save</button>");
+        
+
+        console.log("1");
+        this.game = game;
+        $('#save').on("click", this.sendShips.bind(this));
+        console.log("2");       
+    }
+
+    GameController.prototype.sendShips = function () {
+            var ships_send = {"ships": ships};
+            this.apiService.sendShips(undefined, undefined, this.game._id, ships_send);
+            console.log(ships_send);
     }
 
     //shows game
@@ -43,7 +58,7 @@
             var rowItem = $("<tr class='tile'></tr>");
             for(var column=0;column<10;column++){
                 //creates tile
-                var tile = this.makeTile(chars[row],column+1);
+                var tile = this.makeTile(chars[column], row+1);
                 //adds tile to tile array
                 tiles.push(tile);
 
@@ -155,7 +170,9 @@
                 }
                 //add x y codinates to ship
                 var ship = $(ui.draggable).data("ship");
-                ship.startCell = [x =$(this).data("tile").x,y =$(this).data("tile").y];
+                
+               
+                ship.startCell = {"x": x =$(this).data("tile").x, "y": y =$(this).data("tile").y};
 
 
                 console.log( JSON.stringify(ship));
