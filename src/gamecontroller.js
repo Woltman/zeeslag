@@ -110,16 +110,24 @@
 
 
     function addShipToList(ship) {
+        var self = this;
         var item = $("<li class='ship'></li>");
-        item.on("click", function() {
-            //rotates ship
-           //this.rotateShip(ship,item);
+
+        var rotate = $("<a></a>");
+            rotate.text("Rotate");
+
+        rotate.on("click", function() {
+           // rotates ship
+            ship.rotate();
+            self.showShips(ships);
 
         });
 
         //item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
         item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
         $("#ships").append(item);
+        $("#ships").append(rotate);
+
         item.data('ship', ship);
         item.draggable({
 
@@ -142,7 +150,7 @@
 
     //rotate ship
 
-    GameController.prototype.rotateShip = function (ship,item){
+    function rotateShip(ship,item){
         ship.rotate();
         item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
     }
@@ -150,29 +158,31 @@
 
     //makes all td dropppable
     GameController.prototype.makeDroppable =function(){
-
+var me = this;
         $("td").droppable({
             drop: function(event, ui) {
                 var self = this;
 
 
 
+                if( me.isPlaceble(ui,self) == true){
+                    if($(ui.draggable).data("ship").isVertical == 1){
+                        me.placeVerical(ui,self);
 
-                for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
-
-                    if($(self).data("tile").isHit == true){
-                        console.log("is hit");
+                    }else{
+                        console.log("Horizontaal");
                     }
-                    $(self).css("background-color","black");
-                    $(self).data('tile').hit();
-                    self =  $(self).next('td');
 
+                    //add x y codinates to ship
+                    var ship = $(ui.draggable).data("ship");
+                    ship.startCell = {"x": x =$(this).data("tile").x, "y": y =$(this).data("tile").y};
+
+                }else {
+                    console.log("cannnot place");
                 }
-                //add x y codinates to ship
-                var ship = $(ui.draggable).data("ship");
-                
-               
-                ship.startCell = {"x": x =$(this).data("tile").x, "y": y =$(this).data("tile").y};
+
+
+
 
 
                 console.log( JSON.stringify(ship));
@@ -182,18 +192,30 @@
         });
 
     }
+
+    GameController.prototype.placeVerical =function(ui, self) {
+
+        for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+            if($(self).data("tile").isHit == true){
+            }
+            $(self).css("background-color","black");
+            $(self).data('tile').hit();
+            self =  $(self).next('td');
+
+        }
+
+    }
     //controles if the ship is placeble
-    GameController.prototype.isPlaceble =function(ui) {
+    GameController.prototype.isPlaceble =function(ui, self) {
 
         var place = true;
         for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
             if($(self).data("tile").isHit == true){
-                console.log("is hit");
-                place = false;
+                return false;
             }
-            $(self).css("background-color","black");
-            $(self).data('tile').hit();
+
             self =  $(self).next('td');
 
         }

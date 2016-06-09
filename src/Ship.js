@@ -12,9 +12,12 @@ function Ship(){
 
         if(this.__v == 1){
             this.__v = 0;
+            this.isVertical = 0;
 
         }else {
             this.__v = 1;
+            this.isVertical = 1;
+
         }
     }
 
