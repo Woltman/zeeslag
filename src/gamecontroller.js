@@ -111,7 +111,7 @@
 
     function addShipToList(ship) {
         var self = this;
-        var item = $("<li class='ship'></li>");
+        var item = $("<li class='ship' id="+ ship.name+"></li>");
 
         var rotate = $("<a></a>");
             rotate.text("Rotate");
@@ -125,13 +125,13 @@
 
         //item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
         item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
+        item.append(rotate);
         $("#ships").append(item);
-        $("#ships").append(rotate);
 
         item.data('ship', ship);
         item.draggable({
 
-            helper: "clone",
+            helper:"clone"
 
         });
     }
@@ -165,37 +165,37 @@ var me = this;
 
 
 
-                if( me.isPlaceble(ui,self) == true){
+                if( me.isPlaceble(ui,self,$(ui.draggable).data("ship")) == true){
                     if($(ui.draggable).data("ship").isVertical == 1){
                         me.placeVerical(ui,self);
 
+
                     }else{
-                        console.log("Horizontaal");
+                        me.placeHori(ui,self);
                     }
 
                     //add x y codinates to ship
                     var ship = $(ui.draggable).data("ship");
                     ship.startCell = {"x": x =$(this).data("tile").x, "y": y =$(this).data("tile").y};
+                    $('#ships').find("#"+ship.name).remove();
 
                 }else {
                     console.log("cannnot place");
                 }
 
 
-
-
-
-                console.log( JSON.stringify(ship));
-
-
             }
         });
+
+     
+
 
     }
 
     GameController.prototype.placeVerical =function(ui, self) {
 
         for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
 
             if($(self).data("tile").isHit == true){
             }
@@ -206,23 +206,66 @@ var me = this;
         }
 
     }
-    //controles if the ship is placeble
-    GameController.prototype.isPlaceble =function(ui, self) {
 
-        var place = true;
+    GameController.prototype.placeHori =function(ui, self) {
+
         for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
-            if($(self).data("tile").isHit == true){
-                return false;
-            }
 
-            self =  $(self).next('td');
+            if($(self).data("tile").isHit == true){
+            }
+            $(self).css("background-color","black");
+            $(self).data('tile').hit();
+            var cellIndex = $(self).closest('td').index();
+            self = $(self).closest('tr').next().children().eq(cellIndex);
 
         }
 
-        return place;
-
     }
+
+    //controles if the ship is placeble
+    GameController.prototype.isPlaceble =function(ui, self, ship) {
+
+        var place = true;
+
+        if(ship.isVertical == false){
+            for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+                if($(self).data("tile") == null){
+                    return false;
+                }
+
+                if($(self).data("tile").isHit == true){
+                    return false;
+                }
+
+                var cellIndex = $(self).closest('td').index();
+                self = $(self).closest('tr').next().children().eq(cellIndex);
+
+            }
+
+            return place;
+        }
+        else{
+
+            for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+                if($(self).data("tile") == null){
+                    return false;
+                }
+
+                if($(self).data("tile").isHit == true){
+                    return false;
+                }
+
+                self =  $(self).next('td');
+
+            }
+
+            return place;
+
+        }
+        }
+
+
 
 
 })(window.zeeslag = window.zeeslag || {});
