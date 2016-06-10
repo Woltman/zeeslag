@@ -18,6 +18,8 @@
         var self = this;
         this.game = game;
         var status = game.status;
+
+        $('#gamelist').toggle("slow");
         $('#saveBoard').empty();
         $('.turn').empty();
         this.renderGame();
@@ -25,7 +27,7 @@
         if(status === "setup") {
             
             this.apiService.getShips(undefined, this.showShips.bind(this));
-            $("#saveBoard").append("<button id='save'>save</button>");
+            $("#saveBoard").append("<button id='save' class='btn-link'>Ik heb mijn mijn boten gezet</button>");
             $('#save').on("click", this.sendShips.bind(this));         
         }
 
@@ -181,9 +183,19 @@
         $('#ships').append(item);
 
         item.data('ship', ship);
-        item.draggable({
 
-            helper:"clone"
+        item.draggable({
+         helper:function() {
+             //debugger;
+
+
+             var clone = $("<div></div>").append(item.clone());
+             clone.css("width","50");
+             clone.css("height","50");
+
+             return clone;
+
+         }
 
         });
     }
@@ -284,7 +296,7 @@ var me = this;
 
         var place = true;
 
-        if(ship.isVertical == false){
+        if(ship.isVertical == true){
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
                 if($(self).data("tile") == null){
                     return false;

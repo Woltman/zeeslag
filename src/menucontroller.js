@@ -7,7 +7,9 @@
         $('#newgame').on("click", this.newGame.bind(this));
         $('#newgame-ai').on("click", this.newGameAI.bind(this));
         $('.delete-games').on("click", this.deleteGames.bind(this));
-        
+        $('#toggle-games').on("click", function(){$('#gamelist').toggle("slow")});
+
+
         //show games
         this.getGames();
         //show user

@@ -1,3 +1,6 @@
+
+
+
 table {
     float: left;
     width: auto;
@@ -30,12 +33,19 @@ td {
 
 
 a{
-    position: inherit;
+    position: relative;
+    height: auto;
+    width: auto;
     margin-left: 60%;
-    margin-top: -8% ;
+    margin-top: auto ;
 
 }
 .game{
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+.container{
     width: 80%;
     margin: auto;
 }

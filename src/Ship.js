@@ -11,12 +11,12 @@ function Ship(){
     this.rotate = function () {
 
         if(this.__v == 1){
-            this.__v = 0;
-            this.isVertical = 0;
-
-        }else {
             this.__v = 1;
             this.isVertical = 1;
+
+        }else {
+            this.__v = 0;
+            this.isVertical = 0;
 
         }
     }
