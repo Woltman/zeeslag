@@ -15,9 +15,11 @@
     }
 
     GameController.prototype.setGame = function(game){
+        var self = this;
         this.game = game;
         var status = game.status;
         $('#saveBoard').empty();
+        $('.turn').empty();
         this.renderGame();
 
         if(status === "setup") {
@@ -28,7 +30,13 @@
         }
 
         else if(status === "started") {
-            $('.turn').append(game.yourTurn);
+            var yourTurn = "";
+            if(game.yourTurn) {yourTurn = "jij bent aan de beurt";}
+            else {yourTurn = "tegenstander is aan de beurt" ;};
+            
+            $('.turn').append(yourTurn);
+
+
             //check if your turn
             if(game.yourTurn == true) {
                 //onclick on tiles for shots
@@ -37,7 +45,8 @@
                     $(this).css("background-color", "RED");
                     console.log($(this).data('tile'));
 
-
+                    data = {"x": $(this).data('tile').x, "y": $(this).data('tile').y};
+                    self.apiService.shoot(undefined, self.showGame(self.game._id).bind(self), self.game._id, data);
                 });
 
             }

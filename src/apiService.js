@@ -109,28 +109,16 @@
         });
     }
 
-//      // sends ship to apponend
-//      ApiService.prototype.sendShips = function (id, error, succes) {
+    ApiService.prototype.shoot = function (error, success, id, data) {
+        return $.ajax({
+            url: "https://zeeslagavans.herokuapp.com/games/"+id+"/shots?token="+this.token,
+            type: "POST",
+            data: data,
+            success: success,
+            error: error
+        });
+    }
 
-//          var x = $.post( "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards", { name: "John", time: "2pm" }, function() {
-//                  console.log( "success" );
-//              })
-//              .done(function() {
-//                  console.log( "second success" );
-//              })
-//              .fail(function() {
-//                  console.log( "error" );
-//              });
-
-// console.log(x);
-
-//      }
-
-
-
-
-
-        
 })(window.zeeslag = window.zeeslag || {});
 
  
