@@ -70,13 +70,16 @@
         console.log("shots");
         console.log(game.myGameboard.shots);
         
-        game.myGameboard.shots.forEach(function(shot) {
+        game.enemyGameboard.shots.forEach(function(shot) {
             console.log($('td').data('tile'));           
-            $.each($('td').data('tile'), function(tile) {
+            $('td').each(function(){
+               var tile = $(this).data('tile');
                 if( tile.x == shot.x && tile.y == shot.y){
-                    tile.css("background-color", "RED");     
+                    $(this).css("background-color", "RED");
                 }
-            }, this);
+            });
+
+
            
 
         }, this);
@@ -109,7 +112,7 @@
                 //adds tile to tile array
                 tiles.push(tile);
 
-                var item = $("<td>"+tile.x+", "+tile.y+"</td>");
+                var item = $("<td></td>");
                 rowItem.append(item);
             }
             $(".enemy-board").append(rowItem);
@@ -154,24 +157,28 @@
     }
 
 
-    function addShipToList(ship) {
+    GameController.prototype.addShipToList = function(ship ) {
         var self = this;
-        var item = $("<li class='ship' id="+ ship.name+"></li>");
 
-        var rotate = $("<a></a>");
+        var item = $("<li class='ship list-group-item' id="+ ship.name.replace(/ /g,'')+"></li>");
+        var list =$("<br/>"+ship.name.replace(/ /g,'') + "<span class='badge'>"+ ship.length+ "</span> <span class='badge'>" + ship.__v+"</span>");
+
+        var rotate = $("<a class='btn btn-primary '></a>");
             rotate.text("Rotate");
 
         rotate.on("click", function() {
            // rotates ship
             ship.rotate();
-            self.showShips(ships);
+            $(this).toggleClass("rotate");
+
+
 
         });
 
         //item.text(ship.ship.name + ","+ ship.ship.length+ ", " + ship.ship.__v);
-        item.text(ship.name + ","+ ship.length+ ", " + ship.__v);
+        item.append(list);
         item.append(rotate);
-        $("#ships").append(item);
+        $('#ships').append(item);
 
         item.data('ship', ship);
         item.draggable({
@@ -183,13 +190,14 @@
 
     //adds ships to Ships array
     GameController.prototype.showShips = function (data) {
+        var self = this;
 
             $("#ships").empty();
             for (var i = 0; i < data.length; i++) {
                 var ship = $.extend(new zeeslag.Ship(), data[i]);
                 //var ship = new Ship(data[i]);
                 ships.push(ship);
-               addShipToList(ship);
+               this.addShipToList(ship);
             }
 
             this.makeDroppable();
@@ -225,7 +233,7 @@ var me = this;
                     //add x y codinates to ship
                     var ship = $(ui.draggable).data("ship");
                     ship.startCell = {"x": x =$(this).data("tile").x, "y": y =$(this).data("tile").y};
-                    $('#ships').find("#"+ship.name).remove();
+                    $('#ships').find("#"+ship.name.replace(/ /g,'')).remove();
 
                 }else {
                     console.log("cannnot place");

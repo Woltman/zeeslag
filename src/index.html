@@ -2,10 +2,12 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 
 <body>
+
 
     <div id="menu">
     <button id="newgame-ai">new game AI</button>
@@ -15,21 +17,30 @@
     <div id="id"></div>
     <ul id="gamelist"></ul>
     </div>
-    <div id="game">
+
+    <div class="game">
         <h2 class="enemy-name"></h2>
         <h3 class="turn"></h3>
 
         <table class="enemy-board"></table>
-    </div>
-    <div id="saveBoard"></div>
+        <div class="ship-list">
 
-    <div id="ships"></div>
-    
+            <ul class="list-group" id="ships">
+
+            </ul>
+        </div>
+        <div id="saveBoard"></div>
+    </div>
+
+
+
+
+
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
     <script src="jquery-ui-1.11.4.custom/jquery-ui.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="style.css">
+
 
     <script src="Tile.js"></script>
     <script src="Ship.js"></script>
