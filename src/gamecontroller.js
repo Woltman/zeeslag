@@ -28,8 +28,19 @@
         }
 
         else if(status === "started") {
-            //onclick on tiles for shots
+            $('.turn').append(game.yourTurn);
             //check if your turn
+            if(game.yourTurn == true) {
+                //onclick on tiles for shots
+                $('.enemy-board').find('td').on("click", function () {
+                    $(this).data('tile').hit();
+                    $(this).css("background-color", "RED");
+                    console.log($(this).data('tile'));
+
+
+                });
+
+            }
             //call showGame from socket if enemy shoots
             //not your turn = cant shoot
         }
