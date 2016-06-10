@@ -16,17 +16,29 @@
 
     GameController.prototype.setGame = function(game){
         this.game = game;
-        
+        var status = game.status;
+        $('#saveBoard').empty();
         this.renderGame();
-        this.apiService.getShips(undefined, this.showShips);
 
-        $("#saveBoard").append("<button id='save'>save</button>");
-        
+        if(status === "setup") {
+            
+            this.apiService.getShips(undefined, this.showShips.bind(this));
+            $("#saveBoard").append("<button id='save'>save</button>");
+            $('#save').on("click", this.sendShips.bind(this));         
+        }
 
-        console.log("1");
-        this.game = game;
-        $('#save').on("click", this.sendShips.bind(this));
-        console.log("2");       
+        else if(status === "started") {
+            //onclick on tiles for shots
+            //check if your turn
+            //call showGame from socket if enemy shoots
+            //not your turn = cant shoot
+        }
+
+        else if(status == "done") {
+            //show boards as a result
+        }
+ 
+        console.log("status: "+status);           
     }
 
     GameController.prototype.sendShips = function () {
@@ -64,14 +76,12 @@
 
                 var item = $("<td>"+tile.x+", "+tile.y+"</td>");
                 rowItem.append(item);
-
-
             }
             $(".enemy-board").append(rowItem);
         }
 
         //adds droppable function
-        this.makeDroppable();
+        // this.makeDroppable();
         this.addTileTo();
 
     }
@@ -146,6 +156,9 @@
                 ships.push(ship);
                addShipToList(ship);
             }
+
+            this.makeDroppable();
+            
     }
 
     //rotate ship
