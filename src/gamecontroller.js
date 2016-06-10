@@ -36,7 +36,6 @@
             
             $('.turn').append(yourTurn);
 
-
             //check if your turn
             if(game.yourTurn == true) {
                 //onclick on tiles for shots
@@ -46,12 +45,12 @@
                     console.log($(this).data('tile'));
 
                     data = {"x": $(this).data('tile').x, "y": $(this).data('tile').y};
-                    self.apiService.shoot(undefined, self.showGame(self.game._id).bind(self), self.game._id, data);
-                });
-
+                    self.apiService.shoot(undefined, self.showGame(self.game._id), self.game._id, data);
+                });   
             }
             //call showGame from socket if enemy shoots
             //not your turn = cant shoot
+            this.setHits(game);
         }
 
         else if(status == "done") {
@@ -65,6 +64,22 @@
             var ships_send = {"ships": ships};
             this.apiService.sendShips(undefined, undefined, this.game._id, ships_send);
             console.log(ships_send);
+    }
+
+    GameController.prototype.setHits = function(game) {
+        console.log("shots");
+        console.log(game.myGameboard.shots);
+        
+        game.myGameboard.shots.forEach(function(shot) {
+            console.log($('td').data('tile'));           
+            $.each($('td').data('tile'), function(tile) {
+                if( tile.x == shot.x && tile.y == shot.y){
+                    tile.css("background-color", "RED");     
+                }
+            }, this);
+           
+
+        }, this);
     }
 
     //shows game
