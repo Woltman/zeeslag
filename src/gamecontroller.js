@@ -233,12 +233,12 @@ var me = this;
 
 
 
-                if( me.isPlaceble(ui,self,$(ui.draggable).data("ship")) == true){
+                if( me.isPlaceble(ui,self,$(ui.draggable).data("ship")) == false){
                     if($(ui.draggable).data("ship").isVertical == 1){
                         me.placeVerical(ui,self);
 
 
-                    }else{
+                    }else if ($(ui.draggable).data("ship").isVertical == 0){
                         me.placeHori(ui,self);
                     }
 
@@ -298,16 +298,24 @@ var me = this;
 
         if(ship.isVertical == true){
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
-                if($(self).data("tile") == null){
+                if($(self).data("tile") == undefined){
                     return false;
                 }
+                if($(self).data("tile").isHit == undefined){
+                    return false;
+                }
+
 
                 if($(self).data("tile").isHit == true){
                     return false;
                 }
 
                 var cellIndex = $(self).closest('td').index();
+
                 self = $(self).closest('tr').next().children().eq(cellIndex);
+                if(self == undefined){
+                    return false;
+                }
 
             }
 
@@ -316,7 +324,7 @@ var me = this;
         else{
 
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
-                if($(self).data("tile") == null){
+                if($(self).data("tile") === undefined){
                     return false;
                 }
 
