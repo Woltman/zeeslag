@@ -233,7 +233,7 @@ var me = this;
 
 
 
-                if( me.isPlaceble(ui,self,$(ui.draggable).data("ship")) == false){
+                if( me.isPlaceble(ui,self,$(ui.draggable).data("ship")) == true){
                     if($(ui.draggable).data("ship").isVertical == 1){
                         me.placeVerical(ui,self);
 
@@ -296,14 +296,14 @@ var me = this;
 
         var place = true;
 
-        if(ship.isVertical == true){
+        if(ship.isVertical != true){
+            console.log("hori");
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
                 if($(self).data("tile") == undefined){
-                    return false;
+                return false;
                 }
-                if($(self).data("tile").isHit == undefined){
-                    return false;
-                }
+
 
 
                 if($(self).data("tile").isHit == true){
@@ -313,20 +313,18 @@ var me = this;
                 var cellIndex = $(self).closest('td').index();
 
                 self = $(self).closest('tr').next().children().eq(cellIndex);
-                if(self == undefined){
-                    return false;
-                }
+
 
             }
 
-            return place;
         }
         else{
 
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
-                if($(self).data("tile") === undefined){
+                if($(self).data("tile") == undefined){
                     return false;
                 }
+
 
                 if($(self).data("tile").isHit == true){
                     return false;
@@ -336,10 +334,11 @@ var me = this;
 
             }
 
-            return place;
 
         }
-        }
+        return place;
+
+    }
 
 
 
