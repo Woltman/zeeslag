@@ -228,6 +228,74 @@
     GameController.prototype.makeDroppable =function(){
 var me = this;
         $("td").droppable({
+            out: function( event, ui ) {
+                var self = this;
+                if($(ui.draggable).data("ship").isVertical !=true){
+                if(me.isPlaceble(ui,self,$(ui.draggable).data("ship") )){
+                for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+                    if($(self).data("tile").isHit != true){
+                        $(self).css("background-color","white");
+
+                    }
+                    var cellIndex = $(self).closest('td').index();
+                    self = $(self).closest('tr').next().children().eq(cellIndex);
+
+                }
+                }
+
+            }else {
+                    var self = this;
+                    if($(ui.draggable).data("ship").isVertical !=true){
+                        if(me.isPlaceble(ui,self,$(ui.draggable).data("ship") )){
+                            for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+                                if($(self).data("tile").isHit != true){
+                                    $(self).css("background-color","white");
+
+                                }
+                                var cellIndex = $(self).closest('td').index();
+                                self =  $(self).next('td');
+                            }
+                        }
+
+                    }
+
+
+
+                }
+            },
+            over: function( event, ui ) {
+                //$(this).next( $(this).css("background-color", "RED"));
+                var self = this;
+                if($(ui.draggable).data("ship").isVertical !=true){
+
+                    if(me.isPlaceble(ui,self,$(ui.draggable).data("ship") )){
+
+                        for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+
+                            $(self).css("background-color","green");
+                            var cellIndex = $(self).closest('td').index();
+                            self = $(self).closest('tr').next().children().eq(cellIndex);
+
+                        }                    }
+
+
+            }else {
+                    if(me.isPlaceble(ui,self,$(ui.draggable).data("ship") )){
+
+                        for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
+
+
+                            $(self).css("background-color","green");
+                            var cellIndex = $(self).closest('td').index();
+                            self =  $(self).next('td');
+
+                        }                    }
+
+                }
+            },
             drop: function(event, ui) {
                 var self = this;
 
@@ -253,6 +321,7 @@ var me = this;
 
 
             }
+
         });
 
      
