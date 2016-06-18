@@ -22,7 +22,7 @@
         $('#gamelist').toggle("slow");
         $('#saveBoard').empty();
         $('.turn').empty();
-        this.renderGame();
+        this.renderGame(game);
 
         if(status === "setup") {
             
@@ -104,10 +104,22 @@
     }
 
     //shows game
-    GameController.prototype.renderGame = function(){
+    GameController.prototype.renderGame = function(game){
         this.showEnemyName();
-        this.showMyBoard();
+        if(game.status =="started"){
+            $("#ships").empty();
+
+            this.showMyBoard();
+
+        }else{
+            $('.my-board').empty();
+                this.showShips(ships);
+
+
+        }
         this.showEnemyBoard();
+
+
     }
 
     //show name
