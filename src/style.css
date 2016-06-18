@@ -46,10 +46,22 @@ a{
     margin: auto;
 }
 .container{
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 .hover {
     border: 1px solid yellow;
     background-color:yellow;
+}
+.drag{
+    display: block;
+    height: 50px;
+    width: 50px;
+    background-color: #00b3ee;
+
+}
+
+.my{
+    background-color: #0000AA;
+
 }

@@ -48,11 +48,14 @@
 
                     data = {"x": $(this).data('tile').x, "y": $(this).data('tile').y};
                     self.apiService.shoot(undefined, self.showGame(self.game._id), self.game._id, data);
-                });   
+                });
+
+
             }
             //call showGame from socket if enemy shoots
             //not your turn = cant shoot
             this.setHits(game);
+            this.setMyHits(game);
         }
 
         else if(status == "done") {
@@ -63,26 +66,39 @@
     }
 
     GameController.prototype.sendShips = function () {
+        console.log(ships);
             var ships_send = {"ships": ships};
             this.apiService.sendShips(undefined, undefined, this.game._id, ships_send);
             console.log(ships_send);
     }
 
     GameController.prototype.setHits = function(game) {
+
         console.log("shots");
         console.log(game.myGameboard.shots);
         
         game.enemyGameboard.shots.forEach(function(shot) {
             console.log($('td').data('tile'));           
-            $('td').each(function(){
+            $('.enemy-board').find('td').each(function(){
                var tile = $(this).data('tile');
                 if( tile.x == shot.x && tile.y == shot.y){
                     $(this).css("background-color", "RED");
                 }
             });
 
+        }, this);
+    }
 
-           
+    GameController.prototype.setMyHits = function(game) {
+
+        game.myGameboard.shots.forEach(function(shot) {
+            console.log($('td').data('tile'));
+            $('.my-board').find('td').each(function(){
+                var tile = $(this).data('tile');
+                if( tile.x == shot.x && tile.y == shot.y){
+                    $(this).css("background-color", "RED");
+                }
+            });
 
         }, this);
     }
@@ -90,6 +106,7 @@
     //shows game
     GameController.prototype.renderGame = function(){
         this.showEnemyName();
+        this.showMyBoard();
         this.showEnemyBoard();
     }
 
@@ -118,6 +135,31 @@
                 rowItem.append(item);
             }
             $(".enemy-board").append(rowItem);
+        }
+
+        //adds droppable function
+        // this.makeDroppable();
+        this.addTileTo();
+
+    }
+
+    GameController.prototype.showMyBoard = function(){
+        $(".my-board").empty();
+        var chars =['a','b','c','d','e','f','g','h','i','j'];
+
+
+        for(var row=0;row<10;row++){
+            var rowItem = $("<tr class='tile'></tr>");
+            for(var column=0;column<10;column++){
+                //creates tile
+                var tile = this.makeTile(chars[column], row+1);
+                //adds tile to tile array
+                tiles.push(tile);
+
+                var item = $("<td class='my'></td>");
+                rowItem.append(item);
+            }
+            $(".my-board").append(rowItem);
         }
 
         //adds droppable function
@@ -162,11 +204,13 @@
     GameController.prototype.addShipToList = function(ship ) {
         var self = this;
 
-        var item = $("<li class='ship list-group-item' id="+ ship.name.replace(/ /g,'')+"></li>");
+        var item = $("<li class='ship list-group-item' id="+ ship.name.replace(/ /g,'')+"><div class='drag '></div></li>");
         var list =$("<br/>"+ship.name.replace(/ /g,'') + "<span class='badge'>"+ ship.length+ "</span> <span class='badge'>" + ship.__v+"</span>");
 
         var rotate = $("<a class='btn btn-primary '></a>");
             rotate.text("Rotate");
+
+
 
         rotate.on("click", function() {
            // rotates ship
@@ -184,12 +228,17 @@
 
         item.data('ship', ship);
 
-        item.draggable({
+        var draggbleShip = $(item).find(".drag");
+
+        $(draggbleShip).draggable({
          helper:function() {
              //debugger;
+             draggbleShip.data('ship', item.data('ship'));
 
 
-             var clone = $("<div></div>").append(item.clone());
+             var clone = $("<div></div>").append();
+             clone.css("backgroundColor","blue");
+
              clone.css("width","50");
              clone.css("height","50");
 
@@ -230,7 +279,7 @@ var me = this;
         $("td").droppable({
             out: function( event, ui ) {
                 var self = this;
-                if($(ui.draggable).data("ship").isVertical !=true){
+                if($(ui.draggable).data("ship").isVertical ==true){
                 if(me.isPlaceble(ui,self,$(ui.draggable).data("ship") )){
                 for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
@@ -266,9 +315,8 @@ var me = this;
                 }
             },
             over: function( event, ui ) {
-                //$(this).next( $(this).css("background-color", "RED"));
                 var self = this;
-                if($(ui.draggable).data("ship").isVertical !=true){
+                if($(ui.draggable).data("ship").isVertical ==true){
 
                     if(me.isPlaceble(ui,self,$(ui.draggable).data("ship") )){
 
@@ -329,7 +377,7 @@ var me = this;
 
     }
 
-    GameController.prototype.placeVerical =function(ui, self) {
+    GameController.prototype.placeHori =function(ui, self) {
 
         for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
@@ -344,7 +392,7 @@ var me = this;
 
     }
 
-    GameController.prototype.placeHori =function(ui, self) {
+    GameController.prototype.placeVerical =function(ui, self) {
 
         for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
@@ -365,8 +413,8 @@ var me = this;
 
         var place = true;
 
-        if(ship.isVertical != true){
-            console.log("hori");
+        if(ship.isVertical == true){
+            console.log("verti");
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
                 if($(self).data("tile") == undefined){
