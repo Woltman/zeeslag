@@ -28,7 +28,7 @@
             
             this.apiService.getShips(undefined, this.showShips.bind(this));
             $("#saveBoard").append("<button id='save' class='btn-link'>Ik heb mijn mijn boten gezet</button>");
-            $('#save').on("click", this.sendShips.bind(this));         
+            $('#save').on("click", this.sendShips.bind(this));
         }
 
         else if(status === "started") {
@@ -70,6 +70,7 @@
             var ships_send = {"ships": ships};
             this.apiService.sendShips(undefined, undefined, this.game._id, ships_send);
             console.log(ships_send);
+
     }
 
     GameController.prototype.setHits = function(game) {

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e4fd1feb-2d4b-4829-967b-486e46221883" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamecontroller.js" afterPath="$PROJECT_DIR$/src/gamecontroller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/menucontroller.js" afterPath="$PROJECT_DIR$/src/menucontroller.js" />
     </list>
     <ignored path="Zeeslag.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +28,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.038462">
+            <state vertical-scroll-proportion="0.0">
               <caret line="27" column="29" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="29" />
               <folding />
             </state>
@@ -76,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamecontroller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gamecontroller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43804035">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state vertical-scroll-proportion="-8.655172">
+              <caret line="220" column="63" selection-start-line="220" selection-start-column="63" selection-end-line="220" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -101,7 +102,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.692307">
+            <state vertical-scroll-proportion="0.0">
               <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
               <folding />
             </state>
@@ -118,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menucontroller.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="menucontroller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/menucontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.66943294">
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -146,12 +147,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/Tile.js" />
         <option value="$PROJECT_DIR$/src/apiService.js" />
-        <option value="$PROJECT_DIR$/src/menucontroller.js" />
         <option value="$PROJECT_DIR$/src/app.js" />
         <option value="$PROJECT_DIR$/src/Ship.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/style.css" />
         <option value="$PROJECT_DIR$/src/gamecontroller.js" />
+        <option value="$PROJECT_DIR$/src/menucontroller.js" />
       </list>
     </option>
   </component>
@@ -195,7 +196,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -310,6 +310,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -779,14 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/menucontroller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="57" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -807,7 +800,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.038462">
+        <state vertical-scroll-proportion="0.0">
           <caret line="27" column="29" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="29" />
           <folding />
         </state>
@@ -815,7 +808,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.692307">
+        <state vertical-scroll-proportion="0.0">
           <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
           <folding />
         </state>
@@ -823,8 +816,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamecontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43804035">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state vertical-scroll-proportion="-8.655172">
+          <caret line="220" column="63" selection-start-line="220" selection-start-column="63" selection-end-line="220" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/menucontroller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66943294">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
           <folding />
         </state>
       </provider>

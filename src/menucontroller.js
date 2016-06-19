@@ -36,13 +36,15 @@
     }
     
     MenuController.prototype.addGameToList = function (game) {
-        var item = $("<li></li>");
+        var item = $("<li class='list-group-item'></li>");
+        var span = $("<span  class='badge'> "+game.status+"</span>")
         
         item.on("click", function() {
             this.gamecontroller.showGame(game._id);
         }.bind(this));
         
-        item.text(game.enemyName + ", " + game.status);
+        item.text(game.enemyName);
+        item.append(span);
         $("#gamelist").append(item);
     }
 
