@@ -64,7 +64,6 @@
                 $('.enemy-board').find('td').on("click", function () {
                     $(this).data('tile').hit();
                     $(this).css("background-color", "RED");
-                    console.log($(this).data('tile'));
 
                     data = {"x": $(this).data('tile').x, "y": $(this).data('tile').y};
                     self.apiService.shoot(undefined, undefined, self.game._id, data);
@@ -94,10 +93,8 @@
     }
 
     GameController.prototype.sendShips = function () {
-        console.log(ships);
             var ships_send = {"ships": ships};
             this.apiService.sendShips(undefined, undefined, this.game._id, ships_send);
-            console.log(ships_send);
 
     }
 
@@ -139,6 +136,8 @@
             $("#ships").empty();
 
             this.showMyBoard();
+            this.showShipsOnMyBoard();
+
 
         }else{
             $('.my-board').empty();
@@ -147,7 +146,6 @@
 
         }
         this.showEnemyBoard();
-        this.showShipsOnMyBoard();
     }
 
     //show name
@@ -210,12 +208,78 @@
 
     GameController.prototype.showShipsOnMyBoard = function(){
         var tds = $(".my-board").find('td');
+        var myShips = this.game.myGameboard.ships;
 
-        for(td in tds){
-            var data =$(td).data('tile');
+        console.log($(tds));
 
-            
-        }
+
+
+
+
+
+
+
+
+
+            myShips.forEach(function(item , index){
+                console.log(item);
+
+                $.each(tds,function(index,data){
+
+                    if(item.startCell.x == $(data).data('tile').x && item.startCell.y == $(data).data('tile').y ){
+                        console.log("macth");
+                        $(data).css("backgroundColor","WHITE");
+
+                        if(item.isVertical ==true){
+
+                                for(var c = 0 ;item.length  > c ;c++){
+
+                                    if($(data).data("tile").isHit != true){
+                                        $(data).css("background-color","BLACK");
+
+                                    }else{
+                                        $(data).css("background-color","yellow");
+
+
+                                    }
+                                    var cellIndex = $(data).closest('td').index();
+                                    data = $(data).closest('tr').next().children().eq(cellIndex);
+
+                                }
+
+
+                        }else {
+                                    for(var c = 0 ;item.length  > c ;c++){
+
+                                        if($(data).data("tile").isHit != true){
+                                            $(data).css("background-color","BLACK");
+
+                                        }else{
+                                            $(data).css("background-color","yellow");
+
+
+                                        }
+                                        var cellIndex = $(data).closest('td').index();
+                                        data =  $(data).next('td');
+                                    }
+
+
+
+
+
+
+                        }
+
+
+                    }
+                });
+
+
+
+
+            });
+
+
 
     }
 
@@ -467,7 +531,7 @@ var me = this;
         var place = true;
 
         if(ship.isVertical == true){
-            console.log("verti");
+
             for(var c = 0 ;$(ui.draggable).data("ship").length  > c ;c++){
 
                 if($(self).data("tile") == undefined){
