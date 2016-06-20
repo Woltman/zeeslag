@@ -8,14 +8,24 @@
         this.self = this;
         this.game = null;
 
-        // socket.on('shot', function(shot, this.game) {
-        //     this.showGame(this.game._id);
-        // });
+        socket.on('shot', function(shot) {
+            console.log("this game: ");
+            console.log(this.getGameId());
+            console.log("Socket game: ");
+            console.log(shot.gameId);
+            if(this.getGameId() === shot.gameId) {
+                this.showGame(shot.gameId);
+            }   
+        }.bind(this));
     }
     zeeslag.GameController = GameController;
 
     GameController.prototype.showGame = function(id){
         this.apiService.getGame(id, undefined, this.setGame.bind(this));
+    }
+
+    GameController.prototype.getGameId = function () {
+        return this.game._id;
     }
 
     GameController.prototype.changeTurn = function(turn) {
@@ -29,7 +39,7 @@
 
         console.log("your turn ="+game.yourTurn);
 
-        $('#gamelist').toggle("slow");
+        //$('#gamelist').toggle("slow");
         $('#saveBoard').empty();
         $('.turn').empty();
         this.renderGame(game);
@@ -57,7 +67,7 @@
                     console.log($(this).data('tile'));
 
                     data = {"x": $(this).data('tile').x, "y": $(this).data('tile').y};
-                    self.apiService.shoot(undefined, self.showGame(self.game._id), self.game._id, data);
+                    self.apiService.shoot(undefined, undefined, self.game._id, data);
                 });
 
 

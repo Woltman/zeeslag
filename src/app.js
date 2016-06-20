@@ -15,5 +15,6 @@ $(document).ready(function () {
     socket.on('update', function(update){
         menuController.getGames();
         console.log("update= "+update);
+        console.log(update);
     });
 });
