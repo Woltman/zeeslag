@@ -139,6 +139,7 @@
 
         }
         this.showEnemyBoard();
+        this.showShipsOnMyBoard();
 
 
     }
@@ -200,6 +201,19 @@
         this.addTileTo();
 
     }
+
+    GameController.prototype.showShipsOnMyBoard = function(){
+        var tds = $(".my-board").find('td');
+
+        for(td in tds){
+            var data =$(td).data('tile');
+
+            
+        }
+
+    }
+
+
 
     //adds add object to colum
     GameController.prototype.makeTile = function(x ,y){

@@ -65,3 +65,8 @@ a{
     background-color: #0000AA;
 
 }
+
+.list-group-item{
+    cursor: pointer;
+
+}
