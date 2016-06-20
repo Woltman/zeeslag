@@ -7,6 +7,7 @@
         var x;
         var y;
         var isHit;
+        var isPlaced;
 
 
 
@@ -18,6 +19,17 @@
 
         }
 
+        this.place = function () {
+
+
+            this.isPlaced = 1;
+
+        }
+
     }
+
+
+
+
     zeeslag.Tile = Tile;
 })(window.zeeslag = window.zeeslag || {})

@@ -37,6 +37,7 @@
         this.game = game;
         var status = game.status;
 
+
         console.log("your turn ="+game.yourTurn);
 
         //$('#gamelist').toggle("slow");
@@ -122,7 +123,12 @@
             $('.my-board').find('td').each(function(){
                 var tile = $(this).data('tile');
                 if( tile.x == shot.x && tile.y == shot.y){
-                    $(this).css("background-color", "RED");
+                    if(!tile.isPlaced){
+                        $(this).css("background-color", "RED");
+
+                    }else {
+                        $(this).css("background-color", "orange");
+                    }
                 }
             });
 
@@ -131,6 +137,7 @@
 
     //shows game
     GameController.prototype.renderGame = function(game){
+
         this.showEnemyName();
         if(game.status =="started" || game.status=="done"){
             $("#ships").empty();
@@ -182,6 +189,7 @@
     }
 
     GameController.prototype.showMyBoard = function(){
+
         $(".my-board").empty();
         var chars =['a','b','c','d','e','f','g','h','i','j'];
 
@@ -203,6 +211,8 @@
         //adds droppable function
         // this.makeDroppable();
         this.addTileTo();
+
+
 
     }
 
@@ -237,11 +247,8 @@
                                     if($(data).data("tile").isHit != true){
                                         $(data).css("background-color","BLACK");
 
-                                    }else{
-                                        $(data).css("background-color","yellow");
-
-
                                     }
+                                    $(data).data("tile").place();
                                     var cellIndex = $(data).closest('td').index();
                                     data = $(data).closest('tr').next().children().eq(cellIndex);
 
@@ -254,11 +261,9 @@
                                         if($(data).data("tile").isHit != true){
                                             $(data).css("background-color","BLACK");
 
-                                        }else{
-                                            $(data).css("background-color","yellow");
-
-
                                         }
+                                        $(data).data("tile").place();
+
                                         var cellIndex = $(data).closest('td').index();
                                         data =  $(data).next('td');
                                     }
