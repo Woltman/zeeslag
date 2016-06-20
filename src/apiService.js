@@ -1,6 +1,7 @@
  (function(zeeslag) {
-    function ApiService(token){
+    function ApiService(token, server){
         this.token = token;
+        this.server = server;
     }
     zeeslag.ApiService = ApiService;
     
@@ -12,7 +13,7 @@
     ApiService.prototype.getGames = function(error, success){
 
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/users/me/games",
+            url: this.server+"users/me/games",
             data: { token: this.token },
             success: success,
             error: error
@@ -23,7 +24,7 @@
      // gives info from user
      ApiService.prototype.getUserInfo = function(error, success){
          return $.ajax({
-             url: "https://zeeslagavans.herokuapp.com/users/me/info",
+             url: this.server+"users/me/info",
              data: { token: this.token },
              success: success,
              error: error
@@ -33,7 +34,7 @@
     
     ApiService.prototype.newGameAI = function (error, success) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/games/ai",
+            url: this.server+"games/ai",
             data: { token: this.token },
             success: success,
             error: error
@@ -44,7 +45,7 @@
     
     ApiService.prototype.newGame = function (error, success) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/games",
+            url: this.server+"games",
             data: { token: this.token },
             success: function (data) {
 
@@ -62,7 +63,7 @@
     
     ApiService.prototype.getUser = function (error, succes) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/users/me/info",
+            url: this.server+"users/me/info",
             data: { token: this.token },
             success: succes,
             error: error
@@ -71,7 +72,7 @@
     
     ApiService.prototype.getGame = function (id, error, success) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/games/"+id,
+            url: this.server+"games/"+id,
             data: { token: this.token },
             success: success,
             error: error
@@ -81,7 +82,7 @@
     //delete all games
     ApiService.prototype.deleteGames = function (error, success) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/users/me/games?token="+this.token,
+            url: this.server+"users/me/games?token="+this.token,
             type: "DELETE",
             success: success,
             error: error
@@ -91,7 +92,7 @@
     //get ships from apponent
      ApiService.prototype.getShips = function (error, succes) {
          return  $.ajax({
-             url: "https://zeeslagavans.herokuapp.com/ships",
+             url: this.server+"ships",
              data: { token: this.token },
              success: succes,
              error: error
@@ -101,7 +102,7 @@
 
      ApiService.prototype.sendShips = function (error, success, id, data) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/games/"+id+"/gameboards?token="+this.token,
+            url: this.server+"games/"+id+"/gameboards?token="+this.token,
             type: "POST",
             data: data,
             success: success,
@@ -111,7 +112,7 @@
 
     ApiService.prototype.shoot = function (error, success, id, data) {
         return $.ajax({
-            url: "https://zeeslagavans.herokuapp.com/games/"+id+"/shots?token="+this.token,
+            url: this.server+"games/"+id+"/shots?token="+this.token,
             type: "POST",
             data: data,
             success: success,

@@ -2,11 +2,15 @@
 
     var ships = [];
     var tiles = [];
-    function GameController(apiService){
+    function GameController(apiService, socket){
+        this.socket = socket;
         this.apiService = apiService;
         this.self = this;
         this.game = null;
 
+        // socket.on('shot', function(shot, this.game) {
+        //     this.showGame(this.game._id);
+        // });
     }
     zeeslag.GameController = GameController;
 
@@ -14,10 +18,16 @@
         this.apiService.getGame(id, undefined, this.setGame.bind(this));
     }
 
+    GameController.prototype.changeTurn = function(turn) {
+        this.showGame(turn.gameId);
+    }
+
     GameController.prototype.setGame = function(game){
         var self = this;
         this.game = game;
         var status = game.status;
+
+        console.log("your turn ="+game.yourTurn);
 
         $('#gamelist').toggle("slow");
         $('#saveBoard').empty();
