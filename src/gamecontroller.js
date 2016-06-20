@@ -2,21 +2,13 @@
 
     var ships = [];
     var tiles = [];
-    function GameController(apiService, socket){
-        this.socket = socket;
+    function GameController(apiService){
+        
         this.apiService = apiService;
         this.self = this;
         this.game = null;
 
-        socket.on('shot', function(shot) {
-            console.log("this game: ");
-            console.log(this.getGameId());
-            console.log("Socket game: ");
-            console.log(shot.gameId);
-            if(this.getGameId() === shot.gameId) {
-                this.showGame(shot.gameId);
-            }   
-        }.bind(this));
+        
     }
     zeeslag.GameController = GameController;
 
@@ -54,10 +46,15 @@
         this.renderGame(game);
 
         if(status === "setup") {
-            
-            this.apiService.getShips(undefined, this.showShips.bind(this));
-            $("#saveBoard").append("<button id='save' class='btn-link'>Ik heb mijn mijn boten gezet</button>");
-            $('#save').on("click", this.sendShips.bind(this));
+            if(game.myGameboard) {
+                $("#ships").empty();
+                $(".enemy-name").text("Waiting for "+game.enemyName+" to setup board");
+            }
+            else {
+                this.apiService.getShips(undefined, this.showShips.bind(this));
+                $("#saveBoard").append("<button id='save' class='btn-link'>Ik heb mijn mijn boten gezet</button>");
+                $('#save').on("click", this.sendShips.bind(this));
+            }
         }
 
         else if(status === "started") {
@@ -72,7 +69,7 @@
                 //onclick on tiles for shots
                 $('.enemy-board').find('td').on("click", function () {
                     $(this).data('tile').hit();
-                    $(this).css("background-color", "RED");
+                    //$(this).css("background-color", "RED");
 
                     data = {"x": $(this).data('tile').x, "y": $(this).data('tile').y};
                     self.apiService.shoot(undefined, undefined, self.game._id, data);
@@ -101,10 +98,19 @@
         console.log("status: "+status);           
     }
 
+
     GameController.prototype.sendShips = function () {
             var ships_send = {"ships": ships};
-            this.apiService.sendShips(undefined, undefined, this.game._id, ships_send);
+            this.apiService.sendShips(undefined, this.emptyBoard, this.game._id, ships_send);
+    }
 
+    GameController.prototype.emptyBoard = function() {
+            $('#saveBoard').empty();
+            $('.turn').empty();
+            $('#save').empty();
+            $('.enemy-board').empty();
+            $('.enemy-name').empty();
+            $('.my-board').empty();        
     }
 
     GameController.prototype.setHits = function(game) {
@@ -117,7 +123,13 @@
             $('.enemy-board').find('td').each(function(){
                var tile = $(this).data('tile');
                 if( tile.x == shot.x && tile.y == shot.y){
-                    $(this).css("background-color", "RED");
+                    if(shot.isHit){
+                        $(this).css("background-color", "GREEN");
+                    }
+                    else {
+                        $(this).css("background-color", "RED");
+                    } 
+                    
                 }
             });
 
@@ -131,11 +143,11 @@
             $('.my-board').find('td').each(function(){
                 var tile = $(this).data('tile');
                 if( tile.x == shot.x && tile.y == shot.y){
-                    if(!tile.isPlaced){
+                    if(shot.isHit){
+                        $(this).css("background-color", "GREEN");
+                    }
+                    else {
                         $(this).css("background-color", "RED");
-
-                    }else {
-                        $(this).css("background-color", "orange");
                     }
                 }
             });
@@ -168,6 +180,7 @@
         if(this.game.status === "queue"){
             $(".enemy-name").text("Waiting for opponent.........");
         }
+        
         $(".enemy-name").text(this.game.enemyName);
     }
 
