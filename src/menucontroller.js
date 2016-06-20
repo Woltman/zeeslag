@@ -19,7 +19,10 @@
     zeeslag.MenuController = MenuController;
 
     MenuController.prototype.showGames = function(data) {
-        $("#gamelist").empty();
+        $("#gamelist-done").empty();
+        $("#gamelist-started").empty();
+        $("#gamelist-queue").empty();
+        $("#gamelist-setup").empty();
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 this.addGameToList(data[i]);
@@ -44,8 +47,12 @@
         }.bind(this));
         
         item.text(game.enemyName);
+        
+        if(game.enemyName === undefined) {
+            item.text("queue");
+        }
         item.append(span);
-        $("#gamelist").append(item);
+        $("#gamelist-"+game.status).append(item);
     }
 
     MenuController.prototype.newGame = function()

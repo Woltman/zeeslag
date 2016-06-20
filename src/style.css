@@ -16,6 +16,7 @@ td {
     width: 50px;
     box-shadow: 3px 3px 1px #888888;
     border-radius: 8%;
+    cursor: pointer;
 }
 .ship-list{
     margin-left: 100px;
@@ -69,4 +70,12 @@ a{
 .list-group-item{
     cursor: pointer;
 
+}
+
+li.list-group-item:hover {
+    background: #ddd;
+}
+
+td:hover {
+    background-color: rgb(255, 200, 0)!important;
 }

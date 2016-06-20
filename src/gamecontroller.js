@@ -79,7 +79,15 @@
         }
 
         else if(status == "done") {
-            //show boards as a result
+            if(!game.yourTurn == true) {
+                $('.turn').append(game.enemyName+" heeft gewonnen!");
+            }
+            else {
+                $('.turn').append("Gefeliciteerd, u bent een beest!");
+            }
+            
+            this.setHits(game);
+            this.setMyHits(game);
         }
  
         console.log("status: "+status);           
@@ -127,7 +135,7 @@
     //shows game
     GameController.prototype.renderGame = function(game){
         this.showEnemyName();
-        if(game.status =="started"){
+        if(game.status =="started" || game.status=="done"){
             $("#ships").empty();
 
             this.showMyBoard();
@@ -140,8 +148,6 @@
         }
         this.showEnemyBoard();
         this.showShipsOnMyBoard();
-
-
     }
 
     //show name
