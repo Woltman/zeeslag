@@ -21,7 +21,11 @@
     zeeslag.GameController = GameController;
 
     GameController.prototype.showGame = function(id){
+
+
+
         this.apiService.getGame(id, undefined, this.setGame.bind(this));
+
     }
 
     GameController.prototype.getGameId = function () {
@@ -35,6 +39,10 @@
     GameController.prototype.setGame = function(game){
         var self = this;
         this.game = game;
+        if(this.game.status == "setup"){
+            ships = [];
+            tiles = [];
+        }
         var status = game.status;
 
 

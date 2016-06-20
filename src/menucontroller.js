@@ -43,6 +43,7 @@
         var span = $("<span  class='badge'> "+game.status+"</span>")
         
         item.on("click", function() {
+
             this.gamecontroller.showGame(game._id);
         }.bind(this));
         
