@@ -49,6 +49,7 @@ a{
 .container{
     width: 90%;
     margin: auto;
+    margin-top: 25px;
 }
 .hover {
     border: 1px solid yellow;

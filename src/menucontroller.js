@@ -8,6 +8,7 @@
         $('#newgame-ai').on("click", this.newGameAI.bind(this));
         $('.delete-games').on("click", this.deleteGames.bind(this));
         $('#toggle-games').on("click", function(){$('#gamelist').toggle("slow")});
+        $('#refresh-games').on("click", this.getGames.bind(this));
 
 
         //show games
@@ -34,12 +35,12 @@
     }
     
     MenuController.prototype.showProfile = function (data) {
-        $("#naam").text(data.name);
-        $("#id").text(data._id);
+        $("#naam").text("Ingelogd als: "+data.name);
+        //$("#id").text(data._id);
     }
     
     MenuController.prototype.addGameToList = function (game) {
-        var item = $("<li class='list-group-item'></li>");
+        var item = $('<li class="list-group-item" onmouseover="playmenuclip();" onclick="playbuttonclip();"></li>');
         var span = $("<span  class='badge'> "+game.status+"</span>")
         
         item.on("click", function() {

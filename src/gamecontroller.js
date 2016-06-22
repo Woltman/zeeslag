@@ -52,7 +52,7 @@
             }
             else {
                 this.apiService.getShips(undefined, this.showShips.bind(this));
-                $("#saveBoard").append("<button id='save' class='btn-link'>Ik heb mijn mijn boten gezet</button>");
+                $("#saveBoard").append("<button id='save' class='btn-default'>Ik heb mijn mijn boten gezet</button>");
                 $('#save').on("click", this.sendShips.bind(this));
             }
         }
@@ -84,18 +84,26 @@
         }
 
         else if(status == "done") {
-            if(!game.yourTurn == true) {
-                $('.turn').append(game.enemyName+" heeft gewonnen!");
-            }
-            else {
-                $('.turn').append("Gefeliciteerd, u bent een beest!");
-            }
+            this.apiService.getGames(undefined, this.setWinner.bind(this));
             
             this.setHits(game);
             this.setMyHits(game);
         }
  
         console.log("status: "+status);           
+    }
+
+    GameController.prototype.setWinner = function(data) {
+            for (var i = 0; i < data.length; i++) {
+                if(data[i]._id === this.game._id) {
+                    if(data[i].winner === data[i].enemyId) {
+                        $('.turn').append(this.game.enemyName+" heeft gewonnen!");
+                    }
+                    else {
+                        $('.turn').append("Gefeliciteerd, u bent een beest!");
+                    }
+                }
+            }
     }
 
 
@@ -106,6 +114,7 @@
 
     GameController.prototype.emptyBoard = function() {
             $('#saveBoard').empty();
+            $("#ships").empty();
             $('.turn').empty();
             $('#save').empty();
             $('.enemy-board').empty();
@@ -196,8 +205,14 @@
                 var tile = this.makeTile(chars[column], row+1);
                 //adds tile to tile array
                 tiles.push(tile);
-
-                var item = $("<td></td>");
+                
+                if(this.game.status === "started") {
+                    var item = $("<td onmouseover='playtileclip();'></td>");
+                }
+                else {
+                    var item = $("<td></td>");
+                }
+                
                 rowItem.append(item);
             }
             $(".enemy-board").append(rowItem);

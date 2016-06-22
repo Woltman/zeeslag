@@ -26,6 +26,12 @@ $(document).ready(function () {
             console.log(shot.gameId);
             if(gameController.getGameId() === shot.gameId) {
                 gameController.showGame(shot.gameId);
+                if(shot.result === "BOOM") {
+                    playhitclip();
+                }
+                else if(shot.result === "SPLASH") {
+                    playmissclip();
+                }
             }   
     });
 });

@@ -10,11 +10,12 @@
 
 <div class="container">
     <div id="menu">
-    <button id="newgame-ai" class="btn-default">new game AI</button>
-    <button id="newgame" class="btn-default">new game multiplayer</button>
-    <button class="delete-games btn-default">delete all games</button>
-        <button id="toggle-games" class="btn-default">show player list</button>
-    <div id="naam"></div>
+    <button id="newgame-ai" class="btn-primary" onclick="playbuttonclip();">New game AI</button>
+    <button id="newgame" class="btn-primary" onclick="playbuttonclip();">New game multiplayer</button>
+    <button class="delete-games btn-primary" onclick="playbuttonclip();">Delete all games</button>
+    <button id="toggle-games" class="btn-primary" onclick="playbuttonclip();">Show games</button>
+    <button id="refresh-games" class="btn-primary" onclick="playbuttonclip();">Refresh</button>
+    <h3 id="naam"></h3>
     <div id="id"></div>
     
     <div id="gamelist">
@@ -63,6 +64,25 @@
     <script src="/menucontroller.js"></script>
     <script src="/gamecontroller.js"></script>
     <script src="https://zeeslagavans.herokuapp.com/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript" src="sound-mouseover.js"></script>
+    <audio>
+        <source src="sounds/click.mp3">
+    </audio>
+    <audio>
+        <source src="sounds/338229_3972805-lq.mp3">
+    </audio>
+    <audio>
+        <source src="sounds/click_one.wav">
+    </audio>
+    <audio>
+        <source src="sounds/bomb-02.wav">
+    </audio>
+    <audio>
+        <source src="sounds/Water splashing, splash.wav">
+    </audio>
+    
+
     
 </body>
 
