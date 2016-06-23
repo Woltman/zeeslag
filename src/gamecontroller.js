@@ -366,7 +366,7 @@
         var self = this;
 
         var item = $("<li class='ship list-group-item' id="+ ship.name.replace(/ /g,'')+"><div class='drag '></div></li>");
-        var list =$("<br/>"+ship.name.replace(/ /g,'') + "<span class='badge'>"+ ship.length+ "</span> <span class='badge'>" + ship.__v+"</span>");
+        var list =$("<br/>"+ship.name.replace(/ /g,'') + "<span class='badge'>"+ ship.length+ "</span> ");
 
         var rotate = $("<a class='btn btn-primary '></a>");
             rotate.text("Rotate");
