@@ -52,7 +52,7 @@
             }
             else {
                 this.apiService.getShips(undefined, this.showShips.bind(this));
-                $("#saveBoard").append("<button id='save' class='btn-default'>Ik heb mijn mijn boten gezet</button>");
+                $("#saveBoard").append("<button id='save' class='btn-primary' onclick='playbuttonclip()'>Ik heb mijn mijn boten gezet</button>");
                 $('#save').on("click", this.sendShips.bind(this));
             }
         }
@@ -169,17 +169,20 @@
 
         this.showEnemyName();
         if(game.status =="started" || game.status=="done"){
+            $('.my-board').empty();
             $("#ships").empty();
 
             this.showMyBoard();
             this.showShipsOnMyBoard();
 
 
-        }else{
+        }else if(game.status=="setup"){
             $('.my-board').empty();
                 this.showShips(ships);
-
-
+        }
+        else {
+            $("#ships").empty();
+            $('.my-board').empty();
         }
         this.showEnemyBoard();
     }
@@ -274,7 +277,7 @@
 
                     if(item.startCell.x == $(data).data('tile').x && item.startCell.y == $(data).data('tile').y ){
                         console.log("macth");
-                        $(data).css("backgroundColor","WHITE");
+                        //$(data).css("backgroundColor","WHITE");
 
                         if(item.isVertical ==true){
 

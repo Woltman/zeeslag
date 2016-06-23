@@ -42,13 +42,19 @@ a{
 
 }
 .game{
-    width: 100%;
+    width: 55%;;
     height: auto;
     margin: auto;
+    margin-left: 150px;
+    float: left;
 }
+
 .container{
     width: 90%;
-    margin: auto;
+    
+    width: unset!important;
+    
+    margin-left: 50px!important;
     margin-top: 25px;
 }
 .hover {
@@ -70,13 +76,19 @@ a{
 
 .list-group-item{
     cursor: pointer;
-
+    width: 400px;
 }
 
 li.list-group-item:hover {
     background: #ddd;
+    
 }
 
 td:hover {
     background-color: rgb(255, 200, 0)!important;
+}
+
+#menu {
+    float: left;
+    margin-left: 150px;
 }
